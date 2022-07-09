@@ -4,7 +4,7 @@
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $result = mysqli_query($db, "select * from users where email='{$email}' and password='{$password}'");
+    $result = mysqli_query($db, "select * from users where email='{$email}' where userld = '{$password}'");
 
     $row = mysqli_fetch_assoc($result);
 
