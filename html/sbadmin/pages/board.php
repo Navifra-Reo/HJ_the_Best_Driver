@@ -22,7 +22,12 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                        $result = mysqli_query($db, "select * from {$type} order by idx desc");
+                                        $sql = "select * from ? order by idx desc";
+                                        $stmt = $db->prepare($sql)
+                                        $stmt->bind_param("sss", $type);
+                                        $stmt->execute();
+                                        $result = $stmt->get_result();
+
                                         while($row = mysqli_fetch_assoc($result)):
                                     ?>
                                     <tr style="cursor:pointer;" onclick="window.location.href='?p=read.php&t=<?=$type?>&i=<?=$row['idx']?>';">
