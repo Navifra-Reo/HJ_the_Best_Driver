@@ -10,4 +10,7 @@
     header("Content-Type: application/octet-stream");
     header("Content-Disposition: attachment; filename={$row['upName']}");
 
-    echo file_get_contents($row['upPath']);
+    if(strpos($row['upPath'],'..')==false && strpos($row['upPath'],'/')==false && strpos($row['upPath'],'\\')==false && strpos($row['upPath'],'/uploads')!==false)
+    {
+        echo file_get_contents($row['upPath']);
+    }
