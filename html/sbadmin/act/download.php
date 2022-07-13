@@ -18,7 +18,8 @@
         $temp = str_replace('../uploads/','',$row['upPath']);
         if(strpos($temp,'..')===false && strpos($temp,'/')===false && strpos($temp,'\\')===false)
         {
-           header("Content-Type: application/octet-stream");
-           header("Content-Disposition: attachment; filename={$row['upName']}");
+            header("Content-Type: application/octet-stream");
+            header("Content-Disposition: attachment; filename={$row['upName']}");
+            echo file_get_contents($row['upPath']);
         }
     }
