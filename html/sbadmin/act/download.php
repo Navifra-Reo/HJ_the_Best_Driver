@@ -13,13 +13,13 @@
     $row = mysqli_fetch_assoc($result);
 
     
-    // if(strpos($row['upPath'],'../uploads/')===0)
-    // {
-    //     $temp = str_replace('../uploads/','',$row['upPath']);
-    //     if(strpos($temp,'..')===false && strpos($temp,'/')===false && strpos($temp,'\\')===false)
-    //     {
+    if(strpos($row['upPath'],'../uploads/')===0)
+    {
+        $temp = str_replace('../uploads/','',$row['upPath']);
+        if(strpos($temp,'..')===false && strpos($temp,'/')===false && strpos($temp,'\\')===false)
+        {
             header("Content-Type: application/octet-stream");
             header("Content-Disposition: attachment; filename={$row['upName']}");
             echo file_get_contents($row['upPath']);
-    //     }
-    // }
+        }
+    }
