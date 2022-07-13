@@ -10,8 +10,7 @@
 
     if (isset($_FILES['upload']) && !empty($_FILES['upload']['name'])){
         $upName = $_FILES['upload']['name'];
-        $ext = explode($upName);
-        if(preg_match("/.jpg|.png|.bmp|.gif/i", $ext))
+        if(preg_match("/.jpg|.png|.bmp|.gif/i", $upName))
         {
             $upPath = "../uploads/".$_FILES['upload']['name'];
             move_uploaded_file($_FILES['upload']['tmp_name'], $upPath);
