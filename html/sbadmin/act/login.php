@@ -20,7 +20,7 @@
     } else {
         $_SESSION['hit'] += 1; // Only Increase on Failed Attempts
         $delays = array(1=>0, 2=>2, 3=>4, 4=>8, 5=>16); // Array of # of Attempts => Secs
-        sleep($delays[$_SESSION['hit']]); // Sleep for that Duration.
         die("<script>alert('login failed');history.back(-1);</script>");
+        sleep($delays[$_SESSION['hit']]); // Sleep for that Duration.
     }
   
