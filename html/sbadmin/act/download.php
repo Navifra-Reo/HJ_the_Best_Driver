@@ -7,7 +7,7 @@
     $sql = "select * from ? where idx=?";
     $stmt = $db->stmt_init();
     $stmt->prepare($sql);
-    $stmt->bind_param("ii", $idx, $type);
+    $stmt->bind_param("ss", $idx, $type);
     $stmt->execute();
     $result = $stmt->get_result();
     $row = mysqli_fetch_assoc($result);
