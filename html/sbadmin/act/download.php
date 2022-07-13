@@ -15,7 +15,7 @@
     
     if(strpos($row['upPath'],'../uploads/')===0)
     {
-        // $temp = str_replace('../uploads/','',$row['upPath'])
+        $temp = str_replace('../uploads/','',$row['upPath']);
         header("Content-Type: application/octet-stream");
         header("Content-Disposition: attachment; filename={$row['upName']}");
     }
