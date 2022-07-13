@@ -4,9 +4,10 @@
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $sql = "select * from users where email=? where userld = ?'";
-    $stmt = $db->prepare($sql)
-    $stmt->bind_param("sss", $email, $password);
+    $sql = "select * from users where email = ? and password = ?";
+    $stmt = $db->stmt_init();
+    $stmt->prepare($sql);
+    $stmt->bind_param("ss", $email, $password);
     $stmt->execute();
     $result = $stmt->get_result();
 
