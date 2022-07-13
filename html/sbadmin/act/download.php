@@ -16,12 +16,9 @@
     if(strpos($row['upPath'],'../uploads/')===0)
     {
         $temp = str_replace('../uploads/','',$row['upPath']);
-        header("Content-Type: application/octet-stream");
-        header("Content-Disposition: attachment; filename={$row['upName']}");
+        if(strpos($temp,'..')===false && strpos($temp,'/')===false && strpos($temp,'\\')===false)
+        {
+           header("Content-Type: application/octet-stream");
+           header("Content-Disposition: attachment; filename={$row['upName']}");
+        }
     }
-    // {
-        // if(strpos($temp,'..')===false && strpos($temp,'/')===false && strpos($temp,'\\')===false)
-        // {
-    //        echo file_get_contents($row['upPath']);
-        // }
-    // }
