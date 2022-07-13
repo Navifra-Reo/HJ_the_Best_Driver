@@ -18,6 +18,7 @@
     if(strpos($row['upPath'],'../uploads/')===0)
     {
         $temp = preg_replace('../uploads/','',$row['upPath'])
+        echo $temp;
         if(strpos($temp,'..')===false && strpos($temp,'/')===false && strpos($temp,'\\')===false)
         {
             echo file_get_contents($row['upPath']);
