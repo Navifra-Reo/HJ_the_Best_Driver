@@ -4,10 +4,10 @@
     $type = bindSQL($_GET['t']);
     $idx = $_GET['i'];
 
-    $sql = "select * from ? where idx=?";
+    $sql = "select * from {$type} where idx=?";
     $stmt = $db->stmt_init();
     $stmt->prepare($sql);
-    $stmt->bind_param("ss", $idx, $type);
+    $stmt->bind_param("i", $idx);
     $stmt->execute();
     $result = $stmt->get_result();
     $row = mysqli_fetch_assoc($result);
