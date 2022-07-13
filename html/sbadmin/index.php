@@ -6,7 +6,7 @@
         include("./pages/login.php");
     } else {
         if (isset($_GET['p'])){
-            $page = $_GET['p'];
+            $page = bindPages($_GET['p']);
         } else {
             $page = "home.php";
         }

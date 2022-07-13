@@ -4,7 +4,12 @@
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $result = mysqli_query($db, "select * from users where email='{$email}' and password='{$password}'");
+    $sql = "select * from users where email = ? and password = ?";
+    $stmt = $db->stmt_init();
+    $stmt->prepare($sql);
+    $stmt->bind_param("ss", $email, $password);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     $row = mysqli_fetch_assoc($result);
 
@@ -15,3 +20,4 @@
     } else {
         die("<script>alert('login failed');history.back(-1);</script>");
     }
+  

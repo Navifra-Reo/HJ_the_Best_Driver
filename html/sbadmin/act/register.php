@@ -3,7 +3,11 @@
 
     $email = $_POST['email'];
     $password = $_POST['password'];
-
-    $result = mysqli_query($db, "insert into users (email, password) values ('{$email}', '{$password}')");
+    
+    $sql = "insert into users (email, password) values (?, ?)";
+    $stmt = $db->stmt_init();
+    $stmt->prepare($sql);
+    $stmt->bind_param("ss", $email, $password);
+    $stmt->execute();
 
     die("<script>alert('success');window.location.href='../';</script>");

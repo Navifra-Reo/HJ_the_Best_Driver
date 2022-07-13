@@ -1,5 +1,5 @@
 <?php
-    $type = $_GET['t'];
+    $type = isset($_GET['t']) ? bindSQL($_GET['t']) : '';
 ?>
                 <div class="container-fluid">
 
@@ -23,11 +23,12 @@
                                 <tbody>
                                     <?php
                                         $result = mysqli_query($db, "select * from {$type} order by idx desc");
+
                                         while($row = mysqli_fetch_assoc($result)):
                                     ?>
                                     <tr style="cursor:pointer;" onclick="window.location.href='?p=read.php&t=<?=$type?>&i=<?=$row['idx']?>';">
                                         <td><?=$row['idx']?></td>
-                                        <td><?=$row['title']?></td>
+                                        <td><?=htmlspecialchars($row['title'])?></td>
                                         <td><?=$row['regDt']?></td>
                                         <td><?=$row['hit']?></td>
                                     </tr>
