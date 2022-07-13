@@ -12,10 +12,12 @@
     $result = $stmt->get_result();
     $row = mysqli_fetch_assoc($result);
 
-    header("Content-Type: application/octet-stream");
-    header("Content-Disposition: attachment; filename={$row['upName']}");
-
-    if(strpos($row['upPath'],'../uploads/')===0);
+    
+    if(strpos($row['upPath'],'../uploads/')===0)
+    {
+        header("Content-Type: application/octet-stream");
+        header("Content-Disposition: attachment; filename={$row['upName']}");
+    }
     // {
         // $temp = preg_replace('../uploads/','',$row['upPath'])
         // if(strpos($temp,'..')===false && strpos($temp,'/')===false && strpos($temp,'\\')===false)
