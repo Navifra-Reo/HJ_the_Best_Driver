@@ -2,12 +2,12 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800"><?=$_GET['t']?></h1>
+                        <h1 class="h3 mb-0 text-gray-800"><?=bindSQL($_GET['t'])?></h1>
                     </div>
 
                     <form method="POST" enctype="multipart/form-data" action="./act/write.php">
                     <div class="row">
-                        <input type="hidden" name="type" value="<?=$_GET['t']?>">
+                        <input type="hidden" name="type" value="<?=bindSQL($_GET['t'])?>">
                         <div class="col-lg-12">
                             <table class="table table-hover">
                                 <tbody>

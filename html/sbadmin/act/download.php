@@ -1,10 +1,15 @@
 <?php
     include("../init.php");
 
-    $type = $_GET['t'];
+    $type = bindSQL($_GET['t']);
     $idx = $_GET['i'];
 
-    $result = mysqli_query($db, "select * from {$type} where idx={$idx}");
+    $sql = "select * from {$type} where idx=?";
+    $stmt = $db->stmt_init();
+    $stmt->prepare($sql);
+    $stmt->bind_param("i", $idx);
+    $stmt->execute();
+    $result = $stmt->get_result();
     $row = mysqli_fetch_assoc($result);
 
     header("Content-Type: application/octet-stream");
