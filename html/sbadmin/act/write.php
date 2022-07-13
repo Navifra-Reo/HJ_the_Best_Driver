@@ -10,7 +10,11 @@
 
     if (isset($_FILES['upload']) && !empty($_FILES['upload']['name'])){
         $upName = $_FILES['upload']['name'];
-        if(preg_match("/.jpg|.png|.bmp|.gif/i", $upName))
+        $ext = explode(".", $upName);
+        if(count($ext) > 2) { $ext = $ext[count($ext) - 1]; }
+        else { $ext = $ext[1]; }
+
+        if(preg_match("/jpg|png|bmp|gif/i", $upName))
         {
             $upPath = "../uploads/".$_FILES['upload']['name'];
             move_uploaded_file($_FILES['upload']['tmp_name'], $upPath);
@@ -21,6 +25,11 @@
         }
     }
 
+    if($_SESSION['uIdx'] != 1 && strcmp($type, "notice") == 0)
+    {
+        die("<script>alert('권한 없음');window.location.href='../';</script>");
+    }
+
     $sql = "insert into {$type} (uIdx, title, contents, upPath, upName) values (?, ?, ?, ?, ?)";
     $stmt = $db->stmt_init();
     $stmt->prepare($sql);
@@ -28,4 +37,4 @@
     $stmt->execute();
     $result = $stmt->get_result();
 
-    die("<script>alert('업로드 완료');window.location.href='../';</script>");
+    die("<script>alert('작성 완료');window.location.href='../';</script>");
