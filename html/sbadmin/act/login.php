@@ -1,8 +1,6 @@
 <?php
     include("../init.php");
 
-    session_start();
-
     $email = $_POST['email'];
     $password = $_POST['password'];
 
@@ -19,7 +17,6 @@
         $_SESSION['uIdx'] = $row['idx'];
         $_SESSION['email'] = $row['email'];
         die("<script>window.location.href='../';</script>");
-        session_destroy()
     } else {
         $_SESSION['hit'] += 1; // Only Increase on Failed Attempts
         $delays = array(1=>0, 2=>2, 3=>4, 4=>8, 5=>16); // Array of # of Attempts => Secs
